@@ -1,0 +1,201 @@
+[
+  {
+    "ContainingType": "WebApiAuth.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WebApiAuth.Controllers.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApiAuth.Controllers.AuthController",
+    "Method": "Resgister",
+    "RelativePath": "api/Auth/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WebApiAuth.Controllers.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.ClasseController",
+    "Method": "GetAll",
+    "RelativePath": "api/Classe",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.ClasseController",
+    "Method": "Sync",
+    "RelativePath": "api/Classe/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classes",
+        "Type": "System.Collections.Generic.List\u00601[[DjanabaApi1.Models.ClasseDto, DjanabaApi1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.EleveController",
+    "Method": "GetAll",
+    "RelativePath": "api/Eleve",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.EleveController",
+    "Method": "Sync",
+    "RelativePath": "api/Eleve/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eleves",
+        "Type": "System.Collections.Generic.List\u00601[[DjanabaApi1.Models.EleveDto, DjanabaApi1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.NoteController",
+    "Method": "GetAll",
+    "RelativePath": "api/Note",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.NoteController",
+    "Method": "Sync",
+    "RelativePath": "api/Note/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notes",
+        "Type": "System.Collections.Generic.List\u00601[[DjanabaApi1.Models.NoteDto, DjanabaApi1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.PaiementController",
+    "Method": "GetAll",
+    "RelativePath": "api/Paiement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.PaiementController",
+    "Method": "Sync",
+    "RelativePath": "api/Paiement/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "paiements",
+        "Type": "System.Collections.Generic.List\u00601[[DjanabaApi1.Models.PaiementDto, DjanabaApi1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SyncController",
+    "Method": "SyncAll",
+    "RelativePath": "api/Sync",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SyncRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.TrimestreController",
+    "Method": "GetAll",
+    "RelativePath": "api/Trimestre",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BulletinApi.Controllers.TrimestreController",
+    "Method": "Sync",
+    "RelativePath": "api/Trimestre/bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "trimestres",
+        "Type": "System.Collections.Generic.List\u00601[[DjanabaApi1.Models.TrimestreDto, DjanabaApi1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DjanabaApi1.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[DjanabaApi1.WeatherForecast, DjanabaApi1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

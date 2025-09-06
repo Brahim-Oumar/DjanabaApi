@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: MonApiAspNetCore
+    env: dotnet
+    plan: free
+    branch: main
+    buildCommand: dotnet publish -c Release -o publish
+    startCommand: dotnet publish/MonApiAspNetCore.dll
