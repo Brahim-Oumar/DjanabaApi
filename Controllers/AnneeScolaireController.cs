@@ -12,7 +12,7 @@ public class SyncController : ControllerBase
         _config = config;
     }
 
-    [HttpPost]
+    [HttpPost("upload")]
     public IActionResult SyncAll([FromBody] SyncRequest request)
     {
         using var conn = new NpgsqlConnection(_config.GetConnectionString("DefaultConnection"));
@@ -103,6 +103,123 @@ public class SyncController : ControllerBase
             tx.Rollback();
             return StatusCode(500, ex.Message);
         }
+    }
+
+
+
+    [HttpGet("download")]
+    public IActionResult GetAll()
+    {
+        using var conn = new NpgsqlConnection(_config.GetConnectionString("DefaultConnection"));
+        conn.Open();
+
+        var response = new SyncRequest();
+
+        // Années
+        using (var cmd = new NpgsqlCommand("SELECT id, nom, datedebut, datefin FROM anneescolaire", conn))
+        using (var reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                response.Annees.Add(new AnneeScolaireDto
+                {
+                    Id = reader.GetInt32(0),
+                    Nom = reader.GetString(1),
+                    DateDebut = reader.GetDateTime(2),
+                    DateFin = reader.GetDateTime(3)
+                });
+            }
+        }
+
+        // Trimestres
+        using (var cmd = new NpgsqlCommand("SELECT id, anneeid, nom, debut, fin FROM trimestre", conn))
+        using (var reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                response.Trimestres.Add(new TrimestreDto
+                {
+                    Id = reader.GetInt32(0),
+                    AnneeId = reader.GetInt32(1),
+                    Nom = reader.GetString(2),
+                    Debut = reader.GetDateTime(3),
+                    Fin = reader.GetDateTime(4)
+                });
+            }
+        }
+
+        // Classes
+        using (var cmd = new NpgsqlCommand("SELECT id, nom, montantscolarite, anneeid FROM classe", conn))
+        using (var reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                response.Classes.Add(new ClasseDto
+                {
+                    Id = reader.GetInt32(0),
+                    Nom = reader.GetString(1),
+                    MontantScolarite = reader.GetDecimal(2),
+                    AnneeId = reader.GetInt32(3)
+                });
+            }
+        }
+
+        // Élèves
+        using (var cmd = new NpgsqlCommand("SELECT id, classeid, nom, prenom, scolarite, anneeid FROM eleve", conn))
+        using (var reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                response.Eleves.Add(new EleveDto
+                {
+                    Id = reader.GetInt32(0),
+                    ClasseId = reader.GetInt32(1),
+                    Nom = reader.GetString(2),
+                    Prenom = reader.GetString(3),
+                    Scolarite = reader.GetDecimal(4),
+                    AnneeId = reader.GetInt32(5)
+                });
+            }
+        }
+
+        // Notes
+        using (var cmd = new NpgsqlCommand("SELECT id, eleveid, competenceid, trimestreid, oral, ecrit, pratique, savoir FROM note", conn))
+        using (var reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                response.Notes.Add(new NoteDto
+                {
+                    Id = reader.GetInt32(0),
+                    EleveId = reader.GetInt32(1),
+                    CompetenceId = reader.GetInt32(2),
+                    TrimestreId = reader.GetInt32(3),
+                    Oral = reader.GetDouble(4),
+                    Ecrit = reader.GetDouble(5),
+                    Pratique = reader.GetDouble(6),
+                    Savoir = reader.GetDouble(7)
+                });
+            }
+        }
+
+        // Paiements
+        using (var cmd = new NpgsqlCommand("SELECT id, eleveid, montant, methode, datepaiement FROM paiement", conn))
+        using (var reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                response.Paiements.Add(new PaiementDto
+                {
+                    Id = reader.GetInt32(0),
+                    EleveId = reader.GetInt32(1),
+                    Montant = reader.GetDecimal(2),
+                    Methode = reader.GetString(3),
+                    DatePaiement = reader.GetDateTime(4)
+                });
+            }
+        }
+
+        return Ok(response);
     }
 }
 

@@ -20,7 +20,7 @@ public class AuthController : ControllerBase
     {
         var user = await _authService.AuthenticateAsync(dto.UserName, dto.Password);
         if (user == null)
-            return Unauthorized(new { Message = "Invalid credentials" });
+            return Unauthorized(new { Message = "Login ou mot de passe incorrect" });
 
         return Ok(new
         {

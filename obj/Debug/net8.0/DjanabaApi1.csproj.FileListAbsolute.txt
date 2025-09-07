@@ -20,6 +20,7 @@ D:\DjanabaApi1\obj\Debug\net8.0\DjanabaApi1.AssemblyInfo.cs
 D:\DjanabaApi1\obj\Debug\net8.0\DjanabaApi1.csproj.CoreCompileInputs.cache
 D:\DjanabaApi1\obj\Debug\net8.0\DjanabaApi1.MvcApplicationPartsAssemblyInfo.cs
 D:\DjanabaApi1\obj\Debug\net8.0\DjanabaApi1.MvcApplicationPartsAssemblyInfo.cache
+D:\DjanabaApi1\obj\Debug\net8.0\DjanabaApi1.sourcelink.json
 D:\DjanabaApi1\obj\Debug\net8.0\scopedcss\bundle\DjanabaApi1.styles.css
 D:\DjanabaApi1\obj\Debug\net8.0\staticwebassets.build.json
 D:\DjanabaApi1\obj\Debug\net8.0\staticwebassets.development.json

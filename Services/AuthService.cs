@@ -20,7 +20,7 @@ public class AuthService
         await using var conn = new NpgsqlConnection(_config.GetConnectionString("DefaultConnection"));
         await conn.OpenAsync();
 
-        string query = "SELECT id, username, passwordhash FROM users WHERE username=@username LIMIT 1";
+        string query = "SELECT id, username, passwordhash FROM users WHERE LOWER(username) = @username LIMIT 1";
         await using var cmd = new NpgsqlCommand(query, conn);
         cmd.Parameters.AddWithValue("username", username);
 
