@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DjanabaApi1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dfadeb0565c3a66458ddae1ee0ebdf1a17ee91b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9362dc997c24cada8cecf6fb9c6212f1af4470bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("DjanabaApi1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DjanabaApi1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
