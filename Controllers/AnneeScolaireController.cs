@@ -47,7 +47,7 @@ public class SyncController : ControllerBase
             // 3. Classes
             foreach (var classe in request.Classes)
             {
-                using var cmd = new NpgsqlCommand("INSERT INTO classe (id, nom, montantscolarite, anneeid) VALUES (@id,@nom,@mont,@aid) ON CONFLICT (id) DO UPDATE SET nom=@nom, montantscolarite=@mont, anneeid=@aid;", conn, tx);
+                using var cmd = new NpgsqlCommand("INSERT INTO classe (nom, montantscolarite, anneeid) VALUES (@nom,@mont,@aid) ON CONFLICT (nom) DO UPDATE SET nom=@nom, montantscolarite=@mont, anneeid=@aid;", conn, tx);
                 cmd.Parameters.AddWithValue("id", classe.Id);
                 cmd.Parameters.AddWithValue("nom", classe.Nom);
                 cmd.Parameters.AddWithValue("mont", classe.MontantScolarite);
@@ -58,16 +58,21 @@ public class SyncController : ControllerBase
             // 4. Élèves
             foreach (var e in request.Eleves)
             {
-                using var cmd = new NpgsqlCommand("INSERT INTO eleve (id, classeid, nom, prenom, scolarite, anneeid) VALUES (@id,@cid,@nom,@pre,@sco,@aid) ON CONFLICT (id) DO UPDATE SET classeid=@cid, nom=@nom, prenom=@pre, scolarite=@sco, anneeid=@aid;", conn, tx);
+                using var cmd = new NpgsqlCommand(@"
+        INSERT INTO eleve (id, classeid, nom, prenom, contact, datenaiss, anneeid) 
+        VALUES (@id,@cid,@nom,@pre,@contact,@datenaiss,@aid) 
+        ON CONFLICT (id) DO UPDATE 
+        SET classeid=@cid, nom=@nom, prenom=@pre, contact=@contact, datenaiss=@datenaiss, anneeid=@aid;", conn, tx);
+
                 cmd.Parameters.AddWithValue("id", e.Id);
                 cmd.Parameters.AddWithValue("cid", e.ClasseId);
                 cmd.Parameters.AddWithValue("nom", e.Nom);
                 cmd.Parameters.AddWithValue("pre", e.Prenom);
-                cmd.Parameters.AddWithValue("sco", e.Scolarite);
+                cmd.Parameters.AddWithValue("contact", (object?)e.Contact ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("datenaiss", e.DateNaiss);
                 cmd.Parameters.AddWithValue("aid", e.AnneeId);
                 cmd.ExecuteNonQuery();
             }
-
             // 5. Notes
             foreach (var n in request.Notes)
             {
@@ -165,7 +170,7 @@ public class SyncController : ControllerBase
         }
 
         // Élèves
-        using (var cmd = new NpgsqlCommand("SELECT id, classeid, nom, prenom, scolarite, anneeid FROM eleve", conn))
+        using (var cmd = new NpgsqlCommand("SELECT id, classeid, nom, prenom, contact, datenaiss, anneeid FROM eleve", conn))
         using (var reader = cmd.ExecuteReader())
         {
             while (reader.Read())
@@ -176,12 +181,12 @@ public class SyncController : ControllerBase
                     ClasseId = reader.GetInt32(1),
                     Nom = reader.GetString(2),
                     Prenom = reader.GetString(3),
-                    Scolarite = reader.GetDecimal(4),
-                    AnneeId = reader.GetInt32(5)
+                    Contact = reader.IsDBNull(4) ? null : reader.GetString(4),
+                    DateNaiss = reader.GetDateTime(5),
+                    AnneeId = reader.GetInt32(6)
                 });
             }
         }
-
         // Notes
         using (var cmd = new NpgsqlCommand("SELECT id, eleveid, competenceid, trimestreid, oral, ecrit, pratique, savoir FROM note", conn))
         using (var reader = cmd.ExecuteReader())

@@ -31,9 +31,10 @@
     {
         public int Id { get; set; }
         public int ClasseId { get; set; }
-        public string Nom { get; set; } = string.Empty;
-        public string Prenom { get; set; } = string.Empty;
-        public decimal Scolarite { get; set; }
+        public string Nom { get; set; } = "";
+        public string Prenom { get; set; } = "";
+        public string? Contact { get; set; } // nullable si absent
+        public DateTime DateNaiss { get; set; }
         public int AnneeId { get; set; }
     }
 
