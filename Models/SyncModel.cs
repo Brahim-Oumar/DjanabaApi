@@ -33,7 +33,7 @@
         public int ClasseId { get; set; }
         public string Nom { get; set; } = "";
         public string Prenom { get; set; } = "";
-        public string? Contact { get; set; } // nullable si absent
+        public int Contact { get; set; } // nullable si absent
         public DateTime DateNaiss { get; set; }
         public int AnneeId { get; set; }
     }

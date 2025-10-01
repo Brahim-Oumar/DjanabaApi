@@ -181,7 +181,7 @@ public class SyncController : ControllerBase
                     ClasseId = reader.GetInt32(1),
                     Nom = reader.GetString(2),
                     Prenom = reader.GetString(3),
-                    Contact = reader.IsDBNull(4) ? null : reader.GetString(4),
+                    Contact = reader.GetInt32(4),
                     DateNaiss = reader.GetDateTime(5),
                     AnneeId = reader.GetInt32(6)
                 });
